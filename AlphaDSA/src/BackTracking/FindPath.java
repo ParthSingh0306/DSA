@@ -1,4 +1,4 @@
-package Recursion;
+package BackTracking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ public class FindPath {
 		System.out.println(ans);
 		
 		findPath2(0, 0, new StringBuilder(""));
+
 		
 		System.out.println(findPath3(0, 0));
 		sc.close();
