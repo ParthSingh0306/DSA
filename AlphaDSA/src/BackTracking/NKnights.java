@@ -70,11 +70,36 @@ public class NKnights {
 			}
 		}
 		
+		if(isValid(row + 1, col + 2, board)) {
+			if(board[row + 1][col + 2] == 'K') {
+				return false;
+			}
+		}
+		
 		if(isValid(row - 1, col - 2, board)) {
 			if(board[row - 1][col - 2] == 'K') {
 				return false;
 			}
 		}
+		
+		if(isValid(row + 1, col - 2, board)) {
+			if(board[row + 1][col - 2] == 'K') {
+				return false;
+			}
+		}
+		
+		if(isValid(row + 2, col + 1, board)) {
+			if(board[row + 2][col + 1] == 'K') {
+				return false;
+			}
+		}
+		
+		if(isValid(row + 2, col - 1, board)) {
+			if(board[row + 2][col - 1] == 'K') {
+				return false;
+			}
+		}
+		
 		return true;
 	}
 
