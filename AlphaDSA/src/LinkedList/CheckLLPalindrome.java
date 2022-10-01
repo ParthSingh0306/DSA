@@ -9,7 +9,7 @@ public class CheckLLPalindrome {
 		ll.addLast(1);
 		ll.addLast(2);
 		ll.addLast(3);
-		ll.addLast(3);
+		ll.addLast(6);
 		ll.addLast(2);
 		ll.addLast(1);
 		ll.display();
