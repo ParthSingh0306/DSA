@@ -41,6 +41,27 @@ public class LevelOrderTraversal {
 		BinaryTree tree = new BinaryTree();
 		Node root = tree.buildTree(nodes);
 		levelOrder(root);
+	    System.out.println(levelOrder2(root));
 	}
+	
+	public static List<List<Integer>> levelOrder2(Node root) {
+	  Queue<Node> q = new LinkedList<Node>();
+	  List<List<Integer>> wrap = new LinkedList<List<Integer>>();
+	  if(root == null) return wrap;
+	  q.add(root);
+	  
+	  while(!q.isEmpty()) {
+		  int level = q.size();
+		  root = q.peek();
+		  List<Integer> list = new LinkedList<Integer>();
+		  for(int i=0; i<level; i++) {
+			  if(q.peek().left != null) q.add(q.peek().left);
+			  if(q.peek().right != null) q.add(q.peek().right);
+			  list.add(q.poll().data);
+		  }
+		  wrap.add(list);
+	  }
+	  return wrap;
+	} 
 
 }

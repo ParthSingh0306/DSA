@@ -1,5 +1,9 @@
 package BinaryTrees;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+
 import BinaryTrees.BinaryTreeB.BinaryTree;
 import BinaryTrees.BinaryTreeB.Node;
 
@@ -19,6 +23,30 @@ public class InOrderTraversal {
 		BinaryTree tree = new BinaryTree();
 		Node root = tree.buildTree(nodes);
 		InOrder(root);
+		System.out.println();
+		System.out.println(InOrder2(root));
+	}
+	
+	public static List<Integer> InOrder2(Node root) {
+		List<Integer> list = new LinkedList<Integer>();
+		Stack<Node> st = new Stack<Node>();
+		Node node = root;
+		
+		while(true) {
+			if(node != null) {
+				st.push(node);
+				node = node.left;
+			} 
+			else {
+				if(st.isEmpty()) {
+					break;
+				} 
+					node = st.pop();
+					list.add(node.data);
+					node = node.right;
+			}
+		}
+		return list;
 	}
 
 }

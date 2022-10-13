@@ -15,6 +15,7 @@ public class HeightOfTree {
 		System.out.println(CountNodes(root));
 	}
 	
+//	T.C = O(HEIGHT)
 	public static int Height(Node root) {
 		if(root == null) {
 			return 0;
