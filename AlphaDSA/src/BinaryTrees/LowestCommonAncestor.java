@@ -14,7 +14,7 @@ public class LowestCommonAncestor {
 		root.left.right = new Node(5);
 		root.right.left = new Node(6);
 		root.right.right = new Node(7);
-		int n = 4, m = 5;
+		int n = 4, m = 7;
 		System.out.println(lca2(root, n, m).data);
 	}
 //	T.C = O(N)
@@ -58,6 +58,8 @@ public class LowestCommonAncestor {
 		return false;
 	}
 	
+//	T.C = O(N)
+//	S.C = O(N) - RECURSION STACK SPACE
 	public static Node lca2(Node root, int n, int m) {
 		if(root == null) {
 			return null;
