@@ -18,6 +18,7 @@ public class NumberOfIslands {
 			}
 		}
 		System.out.println(numIslands(grid));
+		sc.close();
 	}
 	
     static class Pair{

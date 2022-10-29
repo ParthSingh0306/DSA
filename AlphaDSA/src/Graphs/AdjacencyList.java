@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AdjacencyList {
 
 	public static void main(String[] args) {
-		int n = 4, m = 4;
+		int n = 4;
 		ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
 		
 		//n+1
