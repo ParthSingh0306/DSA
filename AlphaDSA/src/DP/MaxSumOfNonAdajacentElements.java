@@ -49,7 +49,7 @@ public class MaxSumOfNonAdajacentElements {
 	public static int SumTabu(int n, int[] arr) {
 		int[] dp = new int[n];
 		dp[0] = arr[0];
-		
+	 
 		for(int i=1; i<n; i++) {
 			int fs = arr[i];
 			if(i>1) fs += dp[i-2];
