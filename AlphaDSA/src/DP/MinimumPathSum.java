@@ -1,12 +1,10 @@
 package DP;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class MinimumPathSum {
 	static int mod = 1000000007;
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 		int[][] grid = {
 				{1, 3, 1},
 				{1, 5, 1},

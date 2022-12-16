@@ -1,19 +1,15 @@
 package DP;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class MaximimFalllingPathSum {
+public class MaximumFalllingPathSum {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 		int[][] grid = {
 				{2, 1, 3},
 				{6, 5, 4},
 				{7, 8, 9}
 		};
-		int n = grid.length;
-		int m = grid[0].length;
 		
 		System.out.println(tabu(grid));
 	}
