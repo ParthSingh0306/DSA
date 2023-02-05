@@ -1,4 +1,4 @@
-package Graphs;
+package Graphs.BFSandDFS;
 
 import java.util.ArrayList;
 //https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1

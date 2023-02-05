@@ -1,4 +1,4 @@
-package Graphs;
+package Graphs.BFSandDFS;
 
 import java.util.Arrays;
 import java.util.Scanner;
