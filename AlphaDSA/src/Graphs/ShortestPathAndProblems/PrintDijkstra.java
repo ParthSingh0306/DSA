@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class ShortestPathWeightedUndirectedGraph {
+public class PrintDijkstra {
 	
 	static class Pair{
 		int first;
