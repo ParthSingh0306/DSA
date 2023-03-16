@@ -77,6 +77,6 @@ public class Dijkstra {
     		}
     	};
     							
-    	System.out.println(Arrays.toString(dijkstra(V, adj, S)));
+    	System.out.println("Distance Array : " + Arrays.toString(dijkstra(V, adj, S)));
     }
 }
