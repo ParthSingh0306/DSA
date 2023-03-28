@@ -1,2 +1,0 @@
-//qw
-print("Hello")
