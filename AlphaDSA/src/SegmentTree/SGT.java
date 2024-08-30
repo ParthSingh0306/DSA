@@ -66,3 +66,59 @@ public class SGT {
 		sc.close();
 	}
 }
+
+
+// For lazy and Node template
+
+public class MyClass {
+  public static void main(String args[]) {
+    int n = 4;
+    int[] arr = {1, 2, 3, 0};
+    sgt sg = new sgt(4);
+    sg.build(0, 0, n-1, arr);
+    System.out.println(sg.query(0, 0, n-1, 0, 3));
+  }
+}
+
+class sgt {
+    static class Node {
+        int min;
+        int lazy;
+        
+        Node() {
+            this.min = Integer.MAX_VALUE;
+            this.lazy = 0;
+        }
+        
+    }
+    
+    Node[] seg;
+    
+    sgt(int n) {
+        seg = new Node[4*n];
+        for(int i=0; i<4*n; i++) seg[i] = new Node();
+    }
+    
+    void build(int ind, int low, int high, int[] arr) {
+        if(low == high) {
+            seg[ind].min = arr[low];
+            return;
+        }
+        
+        int mid = (low + high) / 2;
+        build(2*ind+1, low, mid, arr);
+        build(2*ind+2, mid+1, high, arr);
+        seg[ind].min = Math.min(seg[2*ind+1].min, seg[2*ind+2].min);
+    }
+    
+    int query(int ind, int low, int high, int l, int h) {
+        if(h < low || high < l) return Integer.MAX_VALUE;
+			
+		if(low >= l && high <= h) return seg[ind].min;
+		
+		int mid = (low + high) / 2;
+		int left = query(2*ind + 1, low, mid, l, h);
+		int right = query(2*ind + 2, mid+1, high, l, h);
+		return Math.min(left, right);
+    }
+}
