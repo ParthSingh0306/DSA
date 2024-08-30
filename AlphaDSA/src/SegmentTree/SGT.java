@@ -70,23 +70,28 @@ public class SGT {
 
 // For lazy and Node template
 
-public class MyClass {
-  public static void main(String args[]) {
-    int n = 4;
-    int[] arr = {1, 2, 3, 0};
-    sgt sg = new sgt(4);
-    sg.build(0, 0, n-1, arr);
-    System.out.println(sg.query(0, 0, n-1, 0, 3));
-  }
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+		int n = 4;
+        int[] arr = {1, 2, 3, 0};
+        sgt sg = new sgt(4);
+        sg.build(0, 0, n-1, arr);
+        System.out.println(sg.query(0, 0, n-1, 0, 2));
+        sg.update2(0, 0, n-1, 0, 2, 2);
+        System.out.println(sg.query(0, 0, n-1, 0, 2));
+	}
 }
 
 class sgt {
     static class Node {
-        int min;
+        int sum;
         int lazy;
         
         Node() {
-            this.min = Integer.MAX_VALUE;
+            this.sum = 0;
             this.lazy = 0;
         }
         
@@ -99,26 +104,66 @@ class sgt {
         for(int i=0; i<4*n; i++) seg[i] = new Node();
     }
     
+    void push(int ind, int l, int r) {
+        if(seg[ind].lazy != 0) {
+            seg[ind].sum += (r - l + 1) * seg[ind].lazy;
+            
+            if(l != r) {
+                seg[2*ind+1].sum += seg[ind].lazy;
+                seg[2*ind+2].sum += seg[ind].lazy;
+            }
+            
+            seg[ind].lazy = 0;
+        }
+    }
+    
     void build(int ind, int low, int high, int[] arr) {
         if(low == high) {
-            seg[ind].min = arr[low];
+            seg[ind].sum = arr[low];
+            seg[ind].lazy = 0;
             return;
         }
         
         int mid = (low + high) / 2;
         build(2*ind+1, low, mid, arr);
         build(2*ind+2, mid+1, high, arr);
-        seg[ind].min = Math.min(seg[2*ind+1].min, seg[2*ind+2].min);
+        seg[ind].sum = seg[2*ind+1].sum + seg[2*ind+2].sum;
+    }
+    
+    void update2(int ind, int low, int high, int l, int h, int val) {
+        push(ind, low, high);
+        if(h < low || high < l) return;
+		if(low >= l && high <= h) {
+		    seg[ind].lazy += val;
+		    push(ind, low, high);
+		    return;
+		}
+		
+		int mid = (low + high) / 2;
+		update2(2*ind + 1, low, mid, l, h, val);
+		update2(2*ind + 2, mid+1, high, l, h, val);
+    }
+    
+    void update(int ind, int l, int r, int i, int val) {
+        if(l == r) {
+            seg[ind].sum = val;
+            return;
+        }
+        
+        int mid = (l + r) / 2;
+        if(i <= mid) update(2*ind+1, l, mid, i, val);
+        else update(2*ind+2, mid+1, r, i, val);
+        seg[ind].sum = seg[2*ind+1].sum + seg[2*ind+2].sum;
     }
     
     int query(int ind, int low, int high, int l, int h) {
-        if(h < low || high < l) return Integer.MAX_VALUE;
+        if(h < low || high < l) return 0;
 			
-		if(low >= l && high <= h) return seg[ind].min;
+		if(low >= l && high <= h) return seg[ind].sum;
 		
 		int mid = (low + high) / 2;
 		int left = query(2*ind + 1, low, mid, l, h);
 		int right = query(2*ind + 2, mid+1, high, l, h);
-		return Math.min(left, right);
+		return left + right;
     }
 }
