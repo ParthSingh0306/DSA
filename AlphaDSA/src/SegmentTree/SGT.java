@@ -76,12 +76,12 @@ public class Main
 {
 	public static void main(String[] args) {
 		int n = 4;
-        int[] arr = {1, 2, 3, 0};
-        sgt sg = new sgt(4);
-        sg.build(0, 0, n-1, arr);
-        System.out.println(sg.query(0, 0, n-1, 0, 2));
-        sg.update2(0, 0, n-1, 0, 2, 2);
-        System.out.println(sg.query(0, 0, n-1, 0, 2));
+	        int[] arr = {1, 2, 3, 0};
+	        sgt sg = new sgt(4);
+	        sg.build(0, 0, n-1, arr);
+	        System.out.println(sg.query(0, 0, n-1, 0, 2));
+	        sg.update2(0, 0, n-1, 0, 2, 2);
+	        System.out.println(sg.query(0, 0, n-1, 0, 2));
 	}
 }
 
@@ -133,15 +133,15 @@ class sgt {
     void update2(int ind, int low, int high, int l, int h, int val) {
         push(ind, low, high);
         if(h < low || high < l) return;
-		if(low >= l && high <= h) {
-		    seg[ind].lazy += val;
-		    push(ind, low, high);
-		    return;
-		}
-		
-		int mid = (low + high) / 2;
-		update2(2*ind + 1, low, mid, l, h, val);
-		update2(2*ind + 2, mid+1, high, l, h, val);
+	if(low >= l && high <= h) {
+	    seg[ind].lazy += val;
+	    push(ind, low, high);
+	    return;
+	}
+	
+	int mid = (low + high) / 2;
+	update2(2*ind + 1, low, mid, l, h, val);
+	update2(2*ind + 2, mid+1, high, l, h, val);
     }
     
     void update(int ind, int l, int r, int i, int val) {
@@ -159,11 +159,11 @@ class sgt {
     int query(int ind, int low, int high, int l, int h) {
         if(h < low || high < l) return 0;
 			
-		if(low >= l && high <= h) return seg[ind].sum;
-		
-		int mid = (low + high) / 2;
-		int left = query(2*ind + 1, low, mid, l, h);
-		int right = query(2*ind + 2, mid+1, high, l, h);
-		return left + right;
+	if(low >= l && high <= h) return seg[ind].sum;
+	
+	int mid = (low + high) / 2;
+	int left = query(2*ind + 1, low, mid, l, h);
+	int right = query(2*ind + 2, mid+1, high, l, h);
+	return left + right;
     }
 }
